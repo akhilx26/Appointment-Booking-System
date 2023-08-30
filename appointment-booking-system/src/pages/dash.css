@@ -157,9 +157,21 @@
   align-items: center;
   margin: 20px;
 }
-.slotbuttons{
+.times{
   display: flex;
-  justify-content: center;
-  align-items: center;
-  /* margin: 10px; */
+  flex-basis: 100px;
+  flex-wrap:wrap;
+}
+.button{
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 50px;
+  padding: 6px;
+  width: 190px;
+  margin: 10px;
+}
+.button:hover{
+  background-color: #a5a4a4;
 }

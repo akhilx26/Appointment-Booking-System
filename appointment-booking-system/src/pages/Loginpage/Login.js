@@ -29,10 +29,14 @@ const Login = () => {
       }
       const response = await sendOtpFunction(data);
       // console.log(response);
-      alert("OTP has been sent successfully! Click Ok to continue");
+      // alert("OTP has been sent successfully! Click Ok to continue");
+      
       if(response.status===200){
+        toast.success("OTP has been sent successfully");
         setSpinner(false);
-        navigate("/user/otp",{state:email});
+        setTimeout(()=>{
+          navigate("/user/otp",{state:email});
+        },2000)
       } else{
         toast.error(response.response.data.error);
       }
