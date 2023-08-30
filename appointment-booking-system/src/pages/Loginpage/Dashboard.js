@@ -26,7 +26,7 @@ const Dashboard = () => {
   return (
     <div className="app">
       {/* <h1>Appointment Booking</h1> */}
-      <h2 className="title">Choose a Date</h2>
+      <h2 className="title">Choose a Date and Select a Time Slot </h2>
       <div className="calendar-container">
         <Calendar
           onChange={setDate}
