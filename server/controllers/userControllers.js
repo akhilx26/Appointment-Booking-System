@@ -134,9 +134,7 @@ exports.userBooking = async(req,res) => {
                 date:date
                 });
                 const newBookedSlot = await bookSlot.save();
-                userbooking.findOne({time:time,date:date}).then((result)=>{
-                    res.status(200).json(result);
-                })
+                res.status(200).json(newBookedSlot);
             }
         });
     }catch(error){

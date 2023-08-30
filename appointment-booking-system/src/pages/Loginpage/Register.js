@@ -39,11 +39,8 @@ const Register = () => {
       // toast.success("User Registered Successfully")
       const response = await registerfunction(inputdata);
       if(response.status===200){
-        toast.success("User Registered Successfully");
         setInputdata({...inputdata,fname:"",email:"",password:""});
-        setTimeout(()=>{
-          navigate("/");
-        },3000);
+        navigate("/");
       }else{
         toast.error(response.response.data.error); 
       }
