@@ -5,16 +5,10 @@ const router = require("./routes/router")
 require("./db/conn");
 
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 app.use(express.json());
-app.use(cors(
-    {
-        origin: ["https://appointment-booking-system.vercel.app"],
-        methods: ["POST", "GET"],
-        credentials: true
-    }
-));
+app.use(cors());
 app.use(router);
 
 
