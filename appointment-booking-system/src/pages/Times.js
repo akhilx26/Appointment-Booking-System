@@ -19,27 +19,31 @@ const time = [
   {id:7,time: "03:00PM - 04:00PM"},
   {id:8,time: "04:00PM - 05:00PM"},
   {id:9,time: "05:00PM - 06:00PM"},
+  {id:10,time: "Cancel Appointment"}
 ];
 
 function Times(props) {
   const [event, setEvent] = useState(null);
   const [info, setInfo] = useState(false);
-
+  const [t, setT] = useState(false);
   const displayInfo = async(e) => {
-    // setInfo(true);
-    // setEvent(e.target.innerText);
-    const inputdata = {
-        time: e.target.innerText,
-        date: props.date.toDateString()
-    }
-    // console.log(inputdata);
-    const response = await timeSlot(inputdata);
-    if(response.status===200){
-        alert("Slot Booked Successfully");
-    }else if(response.status===201){
-        alert("Selected Slot is Unavailable");
-    }else{
-        alert("error");
+    if(e.target.innerText==="Cancel Appointment"){
+      toast.success("Appointment Cancelled Successfully!");
+    } else{
+      const inputdata = {
+          time: e.target.innerText,
+          date: props.date.toDateString()
+      }
+      setT(e.target.innerText);
+      const response = await timeSlot(inputdata);
+      if(response.status===200){
+          toast.success("Slot Booked Successfully!");
+          setT(true);
+      }else if(response.status===201){
+          toast.error("Selected Slot is Unavailable");
+      }else{
+          alert("error");
+      }
     }
   }
   
@@ -47,22 +51,20 @@ function Times(props) {
     <div className="times">
       {time.map((times) => {
         return (
-            <div key={times.id} className="slotbuttons">
+          
+            <div key={times.id} className={times.id}>
                 <button  
-                    style={{ padding:"2px" }}
                     onClick={displayInfo}
+                    className="button"
                 >
                     {" "}
                     {times.time}{" "}
                 </button>
             </div>
+            
         );
       })}
-      <div>
-        {info
-          ? `Your appointment is booked for ${event} ${props.date.toDateString()}`
-          : null}
-      </div>
+      <ToastContainer/>
     </div>
   );
 }

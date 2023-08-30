@@ -25,17 +25,14 @@ const Otp = () => {
         otp,email: location.state
       }
       const response = await userVerify(data);
-      // console.log(response);
-      // if(response.status===200){
-      //   navigate("/dashboard")
-      // } else{
-      //   toast.error(response.data.error);
-      // }
+      
       if(response.status===200){
         localStorage.setItem("userdbtoken",response.data.userToken);
         toast.success(response.data.message);
         
-        navigate("/dashboard")
+        setTimeout(()=>{
+          navigate("/dashboard")
+        },2000)
         
         setSpinner(false);
       }else{
@@ -69,6 +66,7 @@ const Otp = () => {
           </form>
         </div>
       </section>
+      <ToastContainer/>
     </div>
   );
 };
